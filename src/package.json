@@ -1,0 +1,21 @@
+{
+  "name": "sss",
+  "version": "0.0.2",
+  "description": "SSS is a Simple Static Site generator.",
+  "main": "./lib/sss",
+  "bin": {
+    "sss": "./bin/sss"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "keywords": [
+    "static",
+    "site",
+    "generator"
+  ],
+  "author": "ronyeh <ronyeh@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
