@@ -1,6 +1,6 @@
 {
   "name": "sss",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "SSS is a Simple Static Site generator.",
   "main": "./lib/sss",
   "bin": {
