@@ -64,7 +64,13 @@ exports.run = function(inputDirArg, outputDirArg, sharedDirArg) {
             
             var filesInSubDirectory = fs.readdirSync(inFile);
             for (var i in filesInSubDirectory) {
-                var f = fileName + "/" + filesInSubDirectory[i];
+                var fNameInSubDir = filesInSubDirectory[i];
+
+                // Ignore hidden files (e.g., .DS_Store)
+                if (fNameInSubDir.indexOf(".") == 0) { continue; }
+                
+                var f = fileName + "/" + fNameInSubDir;
+                
                 console.log("\tAdding " + f);
                 fileNames.push(f);
             }
