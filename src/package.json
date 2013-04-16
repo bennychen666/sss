@@ -1,6 +1,6 @@
 {
   "name": "sss",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "SSS is a Simple Static Site generator.",
   "main": "./lib/sss",
   "bin": {
@@ -9,7 +9,10 @@
   "scripts": {
     "test": "cd test && ../bin/sss && cd -"
   },
-  "repository": "",
+  "repository": {
+      "type" : "git",
+      "url" : "https://github.com/squarepoet/sss.git"
+  },
   "keywords": [
     "static",
     "site",

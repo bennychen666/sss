@@ -1,70 +1,70 @@
-sss: Simple Static Sites
-===
+# SSS is a Simple Static Site generator
 
-**A WORK IN PROGRESS!!!**
+**sss** operates on three directories: `in/`, `out/`, and `shared/`. It looks at the HTML template files in `in/` and searches for tags delimited by double braces, e.g.: `{{ tag_name }}`. This markup is inspired by the Mustache template system: [http://mustache.github.io/](http://mustache.github.io/).
 
-A simple static site generator.
-
-site/
-    in/
-        _/
+    site/
+        in/
             page1/
-                nav.html
+                index.html
+                other.html
             page2/
-                nav.html
-            header.html
-            footer.html
-            copyright.html
+                index.html
+                other.html
+            index.html
+        shared/
             css.html
             js.html
-        js/
-        css/
-        page1/
-            index.html
-            other.html
-        page2/
-            index.html
-            other.html
-        index.html
-    out/
-        js/
-        css/
-        page1/
-            index.html
-            other.html
-        page2/
-            index.html
-            other.html
-        index.html
-        
+            nav.html
+            footer.html
+        out/
+            ( files from in/ will be processed and rendered out to this directory )
 
 Example HTML File:
 
-<html>
-    <head>
-        {{css}}
-        {{js}}
-    </head>
-    <body>
-        {{page1_nav}}
-        {{header}}
-        {{footer}}
-        {{copyright}}
-    </body>
-</html>
+    <html>
+        <head>
+            {{css}}
+            {{js}}
+        </head>
+        <body>
+            {{nav}}
+            <div id="content">
+                This is content!
+            </div>
+            {{footer}}
+        </body>
+    </html>
 
 
-It's like the mustache template system, except we take it a step further!
+The Node.js package is located at: [https://npmjs.org/package/sss](https://npmjs.org/package/sss).
 
-Anything between the {{ }} is assumed to be a file located in the _ directory, which is not copied to our output folder.
+To install it globally, run:
 
-{{page1_nav}} means that we look in _/page1/nav.html for the content to include!
+    npm install -g sss
 
-We parse an html file, look for all {{ }}, and then go read in the associated files. If they are there, we patch their content in and render the output to out/.
+Then, `cd` into your `site/` directory, and type `sss`.
 
-By default, we'll look for the .html extension. But you can specify your own extension, e.g., {{ something.js }} or {{ something.css }} and we'll look for that file!
+You can specify custom directories as arguments. For example: `sss input_dir/ output_dir/ shared_dir/`.
 
-We'll only template *.html, *.js, and *.css files. All other files are copied straight over to the output!
+We will read through all files in the input directory. For each file, **sss** looks for tags of the form `{{tag}}`.
 
-That's it!
+Any `{{tag}}` is assumed to be the name of a file located in the `shared/` directory. For example: `{{nav}}` will be replaced with the contents of `shared/nav.html`.
+
+By default, **sss** looks for files with the `.html` extension. But you can specify your own extension, e.g., `{{file.js}}` or `{{file.css}}` and we'll look for that file in the `shared/` directory.
+
+All files are rendered to the `out/` directory. You can upload these files to your favorite hosting platform. We use Google App Engine. Our site, [http://www.squarepoet.com/](http://www.squarepoet.com/) was created with **sss**.
+
+That's all, folks!
+
+## FAQ
+
+**Q:** I found a bug!  
+**A:** Awesome. Please send me an email or a pull request!
+
+**Q:** Does **sss** have feature X?  
+**A:** No.
+
+**Q:** Oh, I have a cool idea. Can we add it to **sss**?  
+**A:** Sorry. Feel free to fork the project and create your own awesome static site generator! Or, check out more full featured site generators, like [wintersmith](http://jnordberg.github.io/wintersmith/) ( javascript ), [jekyll](https://github.com/mojombo/jekyll) ( ruby ), or [hyde](https://github.com/lakshmivyas/hyde) ( python ).
+
 
