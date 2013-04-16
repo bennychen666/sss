@@ -57,6 +57,19 @@ var parseFile = function(fileName) {
 
     console.log("\nProcessing: " + inFile);
     
+    // If it's a directory, check to make sure the same directory exists in out/
+    var stats = fs.statSync(inFile);
+    if (stats.isDirectory()) {
+        console.log(inFile + " is a directory.");
+        
+        // Make sure that the output directory exists
+        if (!fs.existsSync(outFile)) {
+            fs.mkdirSync(outFile);
+            console.log("Creating " + outFile);
+        }
+        return;
+    }
+    
     var lines = fs.readFileSync(inFile).toString().split("\n");
     var numLines = lines.length;
     
@@ -81,16 +94,26 @@ var parseFile = function(fileName) {
                 
                 // TODO: Handle different file types. But for now, assume there is no extension and that it will be .html.
                 
-                fileName = sharedDir + fileName + ".html";
+                if (fileName.indexOf(".") != -1) {
+                    fileName = sharedDir + fileName; // Already has an extension.
+                } else {
+                    fileName = sharedDir + fileName + ".html"; // Assume HTML
+                }
                 
                 if (!fileNameToContents[fileName]) {
+                    console.log("Looking for " + fileName);
                     // Try to read in the file.
                     if (fs.existsSync(fileName)) {
                         fileNameToContents[fileName] = fs.readFileSync(fileName).toString();
+                    } else {
+                        console.log("Couldn't find " + fileName);
                     }
                 }
                 
                 var contents = fileNameToContents[fileName];
+                if (!contents) {
+                    continue;
+                }
                 
                 if (indentNumSpaces > 0) {
                     var spaces = Array(indentNumSpaces + 1).join(" ");
