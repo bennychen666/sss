@@ -22,11 +22,11 @@ exports.run = function(inputDirArg, outputDirArg, sharedDirArg) {
     console.log("    out: " + outputDir);
     console.log("    shared: " + sharedDir);
 
-    var filenames;
+    var fileNames;
 
     // Make sure the input directory exists.
     if (fs.existsSync(inputDir)) {
-        filenames = fs.readdirSync(inputDir);
+        fileNames = fs.readdirSync(inputDir);
     } else {
         console.log("sss cannot find input dir: " + inputDir);
         return;
@@ -40,35 +40,44 @@ exports.run = function(inputDirArg, outputDirArg, sharedDirArg) {
     
 
     // Read all input files
-    for (var i in filenames) {
-        var fileName = filenames[i];
-        if (fileName.indexOf(".") == 0) {
-            continue; // e.g., .DS_Store
-        }
+    while (fileNames.length > 0) {
+        var fileName = fileNames.shift();
+        
+        // Ignore hidden files (e.g., .DS_Store)
+        if (fileName.indexOf(".") == 0) { continue; }
 
-        parseFile(fileName);
+        var inFile = inputDir + fileName;
+        var outFile = outputDir + fileName;
+
+        // If it's a directory, check to make sure the same directory exists in out/
+        var stats = fs.statSync(inFile);
+        if (stats.isDirectory()) {
+            console.log(inFile + " is a directory.");
+
+            // Make sure that the output directory exists
+            if (!fs.existsSync(outFile)) {
+                console.log("Creating " + outFile);
+                fs.mkdirSync(outFile);
+            }
+            
+            // Scan this directory and all the new files to our list of files.
+            
+            var filesInSubDirectory = fs.readdirSync(inFile);
+            for (var i in filesInSubDirectory) {
+                var f = fileName + "/" + filesInSubDirectory[i];
+                console.log("\tAdding " + f);
+                fileNames.push(f);
+            }
+        } else {
+            parseFile(inFile, outFile);
+        }
     }
 };
 
 
-var parseFile = function(fileName) {
-    var inFile = inputDir + fileName;
-    var outFile = outputDir + fileName;
+var parseFile = function(inFile, outFile) {
 
     console.log("\nProcessing: " + inFile);
-    
-    // If it's a directory, check to make sure the same directory exists in out/
-    var stats = fs.statSync(inFile);
-    if (stats.isDirectory()) {
-        console.log(inFile + " is a directory.");
-        
-        // Make sure that the output directory exists
-        if (!fs.existsSync(outFile)) {
-            fs.mkdirSync(outFile);
-            console.log("Creating " + outFile);
-        }
-        return;
-    }
     
     var lines = fs.readFileSync(inFile).toString().split("\n");
     var numLines = lines.length;
