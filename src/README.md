@@ -8,7 +8,7 @@ This simple static site generator works with three directories:
 * out/
 * shared/ 
 
-It reads HTML template files from `in/`. Whenever it sees {{file_name}} it will look for that file in `shared/` and insert the contents of the file inline. This way, you can have shared components like a common navigation bar or footer across all of your static pages.
+It reads HTML template files from `in/`. Whenever it sees `{{file_name}}` it will look for that file in `shared/` and insert the contents of the file inline. This way, you can have shared components like a common navigation bar or footer across all of your static pages.
 
 All files are rendered to `out/`. These files can be deployed on your web server via SFTP.
 
@@ -18,7 +18,7 @@ All files are rendered to `out/`. These files can be deployed on your web server
 
 ## Run
 
-Assuming that the three directories exist (`in/`, `out/`, and `shared/`) you can run ss by simply typing:
+Assuming that the three directories exist (`in/`, `out/`, and `shared/`) you can run **sss** by simply typing:
 
     sss
 
