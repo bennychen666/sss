@@ -1,0 +1,8 @@
+{
+    "git": {
+        "commitMessage": "release sss version ${version}"
+    },
+    "github": {
+        "release": false
+    }
+}
