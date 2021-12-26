@@ -1,24 +1,24 @@
 {
-  "name": "sss",
-  "version": "0.1.0",
-  "description": "SSS is a Simple Static Site generator.",
-  "main": "./lib/sss",
-  "bin": {
-    "sss": "./bin/sss"
-  },
-  "scripts": {
-    "test": "cd test && ../bin/sss && cd -"
-  },
-  "repository": {
-      "type" : "git",
-      "url" : "https://github.com/squarepoet/sss.git"
-  },
-  "keywords": [
-    "static",
-    "site",
-    "generator"
-  ],
-  "author": "ronyeh <ronyeh@gmail.com>",
-  "license": "MIT",
-  "readmeFilename": "README.md"
+    "name": "sss",
+    "version": "0.1.0",
+    "description": "SSS is a Simple Static Site generator.",
+    "main": "./src/lib/sss",
+    "bin": {
+        "sss": "./bin/sss"
+    },
+    "scripts": {
+        "test": "cd test && ../bin/sss && cd -"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/squarepoet/sss.git"
+    },
+    "keywords": [
+        "static",
+        "site",
+        "generator"
+    ],
+    "author": "Ron B. Yeh <ronyeh@gmail.com>",
+    "license": "MIT",
+    "readmeFilename": "README.md"
 }
