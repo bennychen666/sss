@@ -11,4 +11,4 @@
 # Shortcuts
 
 -   [Home Page](../README.md)
--   [List of All Documents](./AllDocs.md)
+-   [List of All Documents](./All.md)
