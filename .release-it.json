@@ -1,8 +1,12 @@
 {
     "git": {
+        "changelog": false,
         "commitMessage": "release sss version ${version}"
     },
     "github": {
-        "release": false
+        "release": true
+    },
+    "npm": {
+        "publish": true
     }
 }
