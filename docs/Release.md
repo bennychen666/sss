@@ -8,6 +8,10 @@ The package.json contains a script called `release`. Here are some examples of h
 
 You can configure release-it with the `.release-it.json` file.
 
+Questions You'll Need to Answer:
+
+-   Select increment (next version):
+
 ## GitHub
 
 1. Obtain a personal access token (release-it only needs "repo" access; no "admin" or other scopes).
