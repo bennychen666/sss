@@ -16,6 +16,8 @@ You can configure release-it with the `.release-it.json` file.
 
 ## NPM
 
+Make sure you run `npm login` before running `npm run release`.
+
 See: https://www.npmjs.com/package/release-it#publish-to-npm
 See: https://github.com/release-it/release-it/blob/HEAD/docs/npm.md
 
