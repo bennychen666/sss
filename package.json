@@ -8,7 +8,7 @@
     },
     "scripts": {
         "test": "cd test && ../bin/sss && cd -",
-        "release": "release-it --dry-run"
+        "release": "release-it"
     },
     "repository": {
         "type": "git",
